@@ -1,0 +1,9 @@
+#!/bin/sh
+# invia il traffico all'IDS
+sleep 2
+/usr/sbin/iptables -I PREROUTING -t mangle -j ROUTE --gw <dstip> --tee
+/usr/sbin/iptables -I POSTROUTING -t mangle -j ROUTE --gw <dstip> --tee
+exit 1
+# per verificare
+# iptables -L -t mangle
+
